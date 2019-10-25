@@ -8,8 +8,12 @@ public class DeHielo extends Demonio {
     }
 
     @Override
-    protected boolean otraCondicion(Alma alma) {
+    public boolean condicionPropia(Alma alma) {
         return alma.esFriolenta();
     }
 
+    @Override
+    public void funcionSegunTipoDemonio(Alma alma) {
+        alma.setEsFriolenta(true);
+    }
 }

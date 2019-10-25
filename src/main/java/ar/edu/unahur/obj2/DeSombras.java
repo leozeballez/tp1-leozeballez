@@ -9,8 +9,12 @@ public class DeSombras extends Demonio{
     }
 
     @Override
-    protected boolean otraCondicion(Alma alma) {
-        return alma.getValor() <= 50;
+    public boolean condicionPropia(Alma alma) {
+        return alma.getValor() < 50;
     }
 
+    @Override
+    public void funcionSegunTipoDemonio(Alma alma) {
+        alma.setValor(alma.getValor() / 2);
+    }
 }

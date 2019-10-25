@@ -16,11 +16,9 @@ public class Diablo {
 
     public List<Demonio> getDemonios() { return demonios;}
 
-    //Cantidad demonios
     public int cantidadDemonios(){ return demonios.size();}
 
-
-    public boolean puedeDemonioCazarAlma(Demonio demonio, Alma alma){
+    public boolean demonioPuedeCazarAlma(Demonio demonio, Alma alma){
         return demonio.condicionesParaCazar(alma);
     }
 
@@ -28,7 +26,8 @@ public class Diablo {
         demonio.atormentarAlma(alma);
     }
 
-    /*public Alma entrenarUnaAlma(Alma alma, TipoEntrenamiento entrenamiento){
+    //Parte 2 a terminar
+    public void entrenarUnaAlma(Alma alma, TipoEntrenamiento entrenamiento){
 
         switch (entrenamiento){
             case LuchaDemoniaca: alma = new LuchaDemoniaca(alma); break;
@@ -37,10 +36,10 @@ public class Diablo {
 
             case CruzRoja: alma = new CruzRoja(alma); break;
         }
-
-        return alma;
     }
 
+
+    //Parte 3 a revisar
     public List<Alma> almasCazadasPorMisDemonios(){
         return demonios.stream().flatMap(demonio ->
                 demonio.getAlmasCazadas().stream())
@@ -52,7 +51,7 @@ public class Diablo {
     }
 
     public Demonio demonioQueMasCazo(){
-        return demonios.stream().max((demonio1, demonio2) -> demonio1.cantidadAlmasAtrapadas().compareTo(demonio2.cantidadAlmasAtrapadas())).get();
-    }*/
+        return demonios.stream().max((demonio1, demonio2) -> demonio1.numeroAlmasCazadas().compareTo(demonio2.numeroAlmasCazadas() ) ).get();
+    }
 
 }

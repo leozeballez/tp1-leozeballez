@@ -3,38 +3,39 @@ package ar.edu.unahur.obj2;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Demonio {
+public abstract class Demonio implements CondicionPropia, AtormentarAlma, FuncionSegunTipoDemonio {
 
     private List<Alma> almasCazadas;
     private int maldad;
+    private int almasAtormentadas;
 
     public Demonio(int maldad) {
         almasCazadas = new ArrayList<>();
         this.maldad = maldad;
+        this.almasAtormentadas = 0;
     }
 
-    public void salirDeCaza(Lugar lugar){
-        List<Alma> almasAgarradas = new ArrayList<>();
+    public void cazar(Lugar lugar){
         lugar.getAlmas().forEach(alma -> {
+
 
             if (condicionesParaCazar(alma)) {
 
-                almasAgarradas.add(alma);
-                maldad += 2;
+                almasCazadas.add(alma);
+
 
             } else {
 
                 atormentarAlma(alma);
                 maldad++;
+                almasAtormentadas++;
 
             }
+
         });
-
-        cazarAlmas(almasAgarradas);
-        lugar.eliminarAlmas(almasAgarradas);
+        maldad += lugar.getAlmasCazadas() *2 + almasAtormentadas;
+        lugar.eliminarAlmas(almasCazadas);
     }
-
-    protected abstract boolean otraCondicion(Alma alma);
 
     public int getMaldad() {
         return maldad;
@@ -45,19 +46,16 @@ public abstract class Demonio {
     public int numeroAlmasCazadas(){ return almasCazadas.size(); }
 
     public boolean condicionesParaCazar(Alma alma){
-        return condicionGeneral(alma) && otraCondicion(alma);
+        return condicionGeneral(alma) && condicionPropia(alma);
     }
 
-    //Condicion para todos los demonios
     public boolean condicionGeneral(Alma alma){
         return getMaldad() > alma.getBondad();
     }
 
-    //Atormentar almas
+    @Override
     public void atormentarAlma(Alma alma){
         alma.esAtormentada();
+        funcionSegunTipoDemonio(alma);
     }
-
-    public void cazarAlmas(List<Alma> almas){
-        almasCazadas.addAll(almas);
-    }}
+}

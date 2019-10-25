@@ -16,10 +16,6 @@ public class Alma {
         return bondad;
     }
 
-    public void setBondad(int bondad) {
-        this.bondad = bondad;
-    }
-
     public int getValor() {
         return valor;
     }
@@ -37,6 +33,6 @@ public class Alma {
     }
 
     public void esAtormentada() {
-
+        this.bondad -= 5;
     }
 }
