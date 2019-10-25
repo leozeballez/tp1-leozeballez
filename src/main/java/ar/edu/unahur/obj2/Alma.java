@@ -2,6 +2,7 @@ package ar.edu.unahur.obj2;
 
 public class Alma {
 
+
     private int bondad;
     private int valor;
     private boolean esFriolenta;

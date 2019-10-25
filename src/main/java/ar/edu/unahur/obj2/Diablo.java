@@ -28,14 +28,7 @@ public class Diablo {
 
     //Parte 2 a terminar
     public void entrenarUnaAlma(Alma alma, TipoEntrenamiento entrenamiento){
-
-        switch (entrenamiento){
-            case LuchaDemoniaca: alma = new LuchaDemoniaca(alma); break;
-
-            case SupervivenciaExtrema: alma = new SupervivenciaExtrema(alma); break;
-
-            case CruzRoja: alma = new CruzRoja(alma); break;
-        }
+        
     }
 
 
